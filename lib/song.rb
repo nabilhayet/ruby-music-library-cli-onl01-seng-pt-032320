@@ -36,6 +36,11 @@ attr_accessor :name, :artist, :genre
     artist.add_song(self)
   end
 
+  def self.create_from_filename(name)
+    new_from_filename(name).save
+  end
+
+
   def self.new_from_filename(file_name)
       artist,song,genre = name.split(" - ")
       genre.chomp(".mp3")
@@ -45,8 +50,4 @@ attr_accessor :name, :artist, :genre
       genre = Genre.find_or_create_by_name(genre)
       new(song,artist,genre)
 end
-
-  def self.create_from_filename(name)
-    new_from_filename(name).save
-  end
-end
+end 

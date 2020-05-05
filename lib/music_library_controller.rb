@@ -1,6 +1,6 @@
 class MusicLibraryController
 
-def initialize(path="./db/mp3s/")
+def initialize(path="./db/mp3s")
   MusicImporter.new(path).import
 end
 
@@ -69,4 +69,4 @@ end
     puts "Playing #{song.name} by #{song.artist.name}"
   end
 end
-end 
+end

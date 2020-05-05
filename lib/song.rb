@@ -41,12 +41,14 @@ attr_accessor :name, :artist, :genre
   end
 
 
-  def self.new_from_filename(file_name)
-      artist,song,genre = file_name.split(" - ")
-      binding.pry
-      artist = Artist.find_or_create_by_name(artist)
+  def self.new_from_filename(name)
+      artist,song,genre = name.split(" - ")
+      genre_=[]
+      genre_=genre.chomp(".mp3")
+      ##binding.pry
+      art = Artist.find_or_create_by_name(artist)
 
-      genre = Genre.find_or_create_by_name(genre)
-      new(song,artist,genre)
+      gen = Genre.find_or_create_by_name(genre_)
+      new(song,art,gen)
 end
 end

@@ -23,41 +23,44 @@ def call
   end
 
   def list_songs
-      Song.all.sort_by{|a,b| a.name<=>b.name}
-    Song.all.each.with_index(1) do |song,idx|
+      Song.all.sort{|a,b| a.name<=>b.name}.each.with_index(1) do |song,idx|
+    ##binding.pry
+  ##  Song.all.each.with_index(1) do |song,idx|
       puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
   end
 end
 
 def list_artists
-  Artist.all.sort_by(name).each.with_index(1) do |art,idx|
+  ##Artist.all.sort_by(name).each.with_index(1) do |art,idx|
+  Artist.all.sort{|a,b| a.name<=>b.name}.each.with_index(1) do |art,idx|
+
     puts "#{idx}. #{art.name}"
 end
 
   def list_genres
-    Genre.all.sort_by(name).each.with_index(1) do |gen,idx|
+    Genre.all.sort{|a,b| a.name<=>b.name}.each.with_index(1) do |gen,idx|
       puts "#{idx}. #{gen.name}"
     end
   end
 
   def list_songs_by_artist
-    puts 'Please enter the name of an artist'
+    puts 'Please enter the name of an artist:'
     input =gets.strip
 
     if artist = Artist.find_by_name(input)
-      artist.songs.sort_by(name).each.with_index(1) do |song,idx|
+      artist.songs.sort{|a,b| a.name<=>b.name}.each.with_index(1) do |song,idx|
         puts "#{idx}. #{song.name} - #{song.genre.name}"
       end
     end
   end
 
   def list_songs_by_genre
-    puts 'Please enter the name of a genre'
+    puts 'Please enter the name of a genre:'
     input =gets.strip
 
     if genre = Genre.find_by_name(input)
 
-      genre.songs.sort_by(name).each.with_index(1) do |song,idx|
+      genre.songs.sort{|a,b| a.name<=>b.name}.each.with_index(1) do |song,idx|
         puts "#{idx}. #{song.artist.name} - #{song.name}"
       end
     end

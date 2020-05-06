@@ -5,11 +5,13 @@ attr_accessor :name, :songs
   def initialize(name)
     @name = name
     @songs=[]
-    save
+  ##  save
   end
 
   def self.create(name)
-    Artist.new(name)
+    art=Artist.new(name)
+    art.save
+    art
   end
 
   def self.all
@@ -34,6 +36,6 @@ attr_accessor :name, :songs
   end
 
   def genres
-    Song.all.map{|song| song.genre}.uniq
+    songs.map{|song| song.genre}.uniq
   end
 end

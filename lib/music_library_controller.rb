@@ -1,3 +1,4 @@
+require 'pry'
 class MusicLibraryController
 
 def initialize(path="./db/mp3s")
@@ -22,7 +23,8 @@ def call
   end
 
   def list_songs
-    Song.all.sort_by(name).each.with_index(1) do |song,idx|
+      Song.all.sort_by{|a,b| a.name<=>b.name}
+    Song.all.each.with_index(1) do |song,idx|
       puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
   end
 end
@@ -54,6 +56,7 @@ end
     input =gets.strip
 
     if genre = Genre.find_by_name(input)
+
       genre.songs.sort_by(name).each.with_index(1) do |song,idx|
         puts "#{idx}. #{song.artist.name} - #{song.name}"
       end

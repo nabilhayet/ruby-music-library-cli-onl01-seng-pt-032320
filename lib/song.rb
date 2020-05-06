@@ -1,8 +1,9 @@
 require 'pry'
 class Song
   extend Concerns::Findable
-attr_accessor :name, :artist, :genre
-@@all =[]
+  attr_accessor :name, :artist, :genre
+  @@all =[]
+
   def initialize(name,artist=nil,genre=nil)
     @name = name
     self.artist = artist if artist
@@ -45,7 +46,6 @@ attr_accessor :name, :artist, :genre
       artist,song,genre = name.split(" - ")
       genre_=[]
       genre_=genre.chomp(".mp3")
-      ##binding.pry
       art = Artist.find_or_create_by_name(artist)
 
       gen = Genre.find_or_create_by_name(genre_)

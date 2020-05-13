@@ -28,6 +28,7 @@ class Genre
   end
 
   def artists
-    songs.map{|song| song.artist}.uniq
+   songs.map{|song| song.artist}.uniq
+  ##  songs.find{|song| song.artist==self}.uniq
   end
 end
